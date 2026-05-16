@@ -83,3 +83,17 @@ def handle_client(conn, addr):
 
     finally:
         conn.close()
+
+
+def start_server():
+
+    server = socket.socket(
+        socket.AF_INET,
+        socket.SOCK_STREAM
+    )
+
+    server.bind((HOST, PORT))
+
+    server.listen()
+
+    log("Email server started...")
