@@ -14,7 +14,38 @@ if not os.path.exists(MAILBOX_DIR):
 
 def log(message):
     print(f"[SERVER {datetime.now().strftime('%H:%M:%S')}] {message}")
+def save_email(receiver, email_data):
 
+    mailbox_path = f"{MAILBOX_DIR}/{receiver}.json"
+
+    if os.path.exists(mailbox_path):
+
+        with open(mailbox_path, "r") as f:
+            emails = json.load(f)
+
+    else:
+        emails = []
+
+    emails.append(email_data)
+
+    with open(mailbox_path, "w") as f:
+        json.dump(emails, f, indent=4)
+
+
+def get_emails(receiver):
+
+    mailbox_path = f"{MAILBOX_DIR}/{receiver}.json"
+
+    if not os.path.exists(mailbox_path):
+        return []
+
+    with open(mailbox_path, "r") as f:
+        emails = json.load(f)
+
+    with open(mailbox_path, "w") as f:
+        json.dump([], f)
+
+    return emails
 
 def handle_client(conn, addr):
 
