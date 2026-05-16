@@ -97,3 +97,16 @@ def start_server():
     server.listen()
 
     log("Email server started...")
+
+    while True:
+        conn, addr = server.accept()
+
+        thread = threading.Thread(
+            target = handle_client,
+            args = (conn, addr)
+        )
+
+        thread.start()
+
+    if __name__ == "__main__":
+        start_server()
