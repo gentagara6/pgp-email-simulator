@@ -42,9 +42,6 @@ def get_emails(receiver):
     with open(mailbox_path, "r") as f:
         emails = json.load(f)
 
-    with open(mailbox_path, "w") as f:
-        json.dump([], f)
-
     return emails
 
 def handle_client(conn, addr):
