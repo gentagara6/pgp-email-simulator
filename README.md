@@ -193,3 +193,109 @@ Programi:
 - dekripton symmetric key,
 - dekripton email-in,
 - verifikon digital signature.
+
+# Përshkrimi i File-ave
+
+## server.py
+
+Ky file implementon serverin e email-eve.
+
+Përgjegjësitë:
+- pranon lidhjet nga client-at,
+- ruan email-et e enkriptuara,
+- forwardon email-et,
+- menaxhon kërkesat e client-ëve,
+- bën logging.
+
+Funksionet kryesore:
+- `handle_client()`
+- `save_email()`
+- `get_emails()`
+- `start_server()`
+
+## client.py
+
+Ky file implementon client-in dhe user interface.
+
+Përgjegjësitë:
+- shfaq menunë,
+- dërgon kërkesa te serveri,
+- dërgon email-e,
+- pranon email-e,
+- importon/exporton keys.
+
+Funksionet kryesore:
+- `menu()`
+- `send_email()`
+- `receive_emails()`
+- `send_request()`
+
+## crypto_utils.py
+
+Ky file implementon të gjitha operacionet kriptografike.
+
+Përgjegjësitë:
+- gjenerimi i RSA keys,
+- ngarkimi i keys,
+- enkriptimi,
+- dekriptimi,
+- digital signatures,
+- signature verification.
+
+Funksionet kryesore:
+- `generate_key_pair()`
+- `load_private_key()`
+- `load_public_key()`
+- `encrypt_and_sign()`
+- `decrypt_and_verify()`
+
+---
+
+# Implementimi Kriptografik
+
+## RSA Encryption
+
+RSA përdoret për:
+- gjenerimin e public/private keys,
+- enkriptimin e symmetric key,
+- digital signatures.
+
+Madhësia e key:
+
+```text
+4096-bit RSA
+```
+
+## Fernet Encryption
+
+Fernet përdoret për enkriptimin e përmbajtjes së email-it.
+
+Avantazhet:
+- enkriptim i shpejtë,
+- siguri e lartë,
+- symmetric encryption.
+
+## Hybrid Encryption
+
+Projekti kombinon:
+- RSA encryption,
+- Fernet symmetric encryption.
+
+Kjo simulon mënyrën reale të funksionimit të PGP.
+
+---
+
+# Logging dhe Monitoring
+
+Serveri regjistron:
+- lidhjet e client-ëve,
+- email-et e pranuara,
+- email-et e forwarduara.
+
+Shembull:
+
+```
+[SERVER 15:10:20] New encrypted email received from alice@gmail.com
+[SERVER 15:10:20] Email forwarded to bob@gmail.com
+```
+
