@@ -299,3 +299,69 @@ Shembull:
 [SERVER 15:10:20] Email forwarded to bob@gmail.com
 ```
 
+# Error Handling
+
+Programi trajton:
+- email adresat jo valide,
+- mungesën e keys,
+- signature verification failures,
+- invalid requests.
+
+Shembull:
+
+```text
+Signature verification failed.
+```
+
+---
+
+# Shembull i Ekzekutimit
+
+## Client 1 — Alice
+
+```text
+Welcome to the PGP Email Client!
+
+Enter your email:
+alice@gmail.com
+
+===== MENU =====
+1.Generate key pair
+2.Export public key
+3.Import public key
+4.Send email
+5.Receive emails
+6.Exit
+```
+
+## Dërgimi i Email-it
+
+```text
+Receiver email:
+bob@gmail.com
+
+Message:
+Hello Bob!
+
+Encrypting and signing the email...
+
+Email successfully sent.
+```
+
+## Server Output
+
+```text
+[SERVER 15:10:20] Client connected: ('127.0.0.1', 54321)
+[SERVER 15:10:20] New encrypted email received from alice@gmail.com
+[SERVER 15:10:20] Email forwarded to bob@gmail.com
+```
+
+## Client 2 — Bob
+
+```text
+Encrypted email received.
+
+FROM: alice@gmail.com
+
+MESSAGE: Hello Bob!
+```
